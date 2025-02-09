@@ -21,30 +21,39 @@
             <div class="line3"></div>
         </div>
     </nav>
+
     <section class="concours-detail">
-        <h2>{{ concours.nom }} - {{ concours.annee }} - Épreuve {{ concours.numepreuve }}</h2>
+        <h2>{{ concours.nom|default:'Nom inconnu' }} - {{ concours.annee|default:'Année inconnue' }} - Épreuve {{ concours.numepreuve|default:'Non spécifiée' }}</h2>
 
         <div class="concours-content">
             <h3>Épreuve :</h3>
-            <iframe src="{{ concours.epreuve.url }}" width="100%" height="400px"></iframe>
-            
-            <div class="download-buttons">
-                <a href="{{ concours.epreuve.url }}" class="btn" download>Télécharger l'Épreuve</a>
-            </div>
+
+            {% if concours.epreuve %}
+                <iframe src="{{ concours.epreuve.url }}" width="100%" height="400px"></iframe>
+                <div class="download-buttons">
+                    <a href="{{ concours.epreuve.url }}" class="btn" download>Télécharger l'Épreuve</a>
+                </div>
+            {% else %}
+                <p>Aucune épreuve disponible.</p>
+            {% endif %}
 
             <h3>Corrigé :</h3>
-            
-            <iframe src="{{ concours.corrige.url }}" width="100%" height="400px"></iframe>
 
-
-            <div class="download-buttons">
-                <a href="{{ concours.corrige.url }}" class="btn" download>Télécharger le Corrigé</a>
-            </div>
+            {% if concours.corrige %}
+                <iframe src="{{ concours.corrige.url }}" width="100%" height="400px"></iframe>
+                <div class="download-buttons">
+                    <a href="{{ concours.corrige.url }}" class="btn" download>Télécharger le Corrigé</a>
+                </div>
+            {% else %}
+                <p>Aucun corrigé disponible.</p>
+            {% endif %}
         </div>
     </section>
+
     <footer class="footer">
         <p>&copy; 2024 Digital prepa. All Rights Reserved.</p>
     </footer>
+
     <script src="{% static 'script.js' %}"></script>
 </body>
 </html>
