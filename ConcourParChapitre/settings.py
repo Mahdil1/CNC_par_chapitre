@@ -35,6 +35,8 @@ INSTALLED_APPS = [
     'Concour.apps.ConcourConfig',
     'User.apps.UserConfig',
     'Home.apps.HomeConfig',
+    'cloudinary',
+    'cloudinary_storage',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -140,3 +142,12 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 X_FRAME_OPTIONS = 'SAMEORIGIN'
 
 SECURE_SSL_REDIRECT = False  # Disable HTTPS redirection in development
+
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'ds1uodqu3',
+    'API_KEY': '113776541888349',
+    'API_SECRET': 'O5hsuvgYUeUCI98-gNjwL-KHtv0',
+}
+
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
